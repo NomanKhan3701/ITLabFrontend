@@ -1,0 +1,50 @@
+@import "/public/assets/css/variables.scss";
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+img {
+    background: var(--txt-100);
+}
+
+.ptr {
+    cursor: pointer;
+}
+
+.primary-scroll {
+    &::-webkit-scrollbar {
+        height: 5px;
+        width: 7px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: gray;
+        border-radius: 50px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: rgb(233, 231, 231);
+        border-radius: 50px;
+    }
+}
+
+.container {
+    padding: 0px $pd-container;
+
+    @media screen and (max-width: $break-point-tab) {
+        padding: 0px $pd-container-tab;
+    }
+
+    @media screen and (max-width: $break-point-mobile) {
+        padding: 0px $pd-container-sm;
+    }
+}
+
+.sticky-top {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 2rem;
+    transition: .2s all ease;
+}
