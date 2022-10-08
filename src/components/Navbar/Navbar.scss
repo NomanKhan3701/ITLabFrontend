@@ -1,0 +1,32 @@
+@import '/public/assets/css/variables';
+
+.Navbar {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: $navbar-height;
+    width: 100%;
+    font-family: 'Marko One', serif;
+    z-index: $z-navbar;
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        font-size: 1.5rem;
+
+        img {
+            width: 1.6rem;
+        }
+    }
+
+    .utils {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        font-size: 1.4rem;
+    }
+}

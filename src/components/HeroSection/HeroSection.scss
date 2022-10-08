@@ -1,0 +1,225 @@
+@import '/public/assets/css/variables';
+
+.Hero_section {
+    position: relative;
+    display: flex;
+    height: 100vh;
+    min-height: max-content;
+    background: $tint-orange;
+    align-items: center;
+    overflow: hidden;
+
+    .hero_section_content {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        z-index: 1;
+
+        .content_title {
+            font-weight: 500;
+            letter-spacing: .3rem;
+            font-size: 7rem;
+            font-family: 'Marko One', serif;
+            margin-bottom: 6rem;
+
+            .shift_right {
+                margin-left: 6rem;
+            }
+        }
+
+        .content_description {
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
+            max-width: 30rem;
+            font-weight: 500;
+            color: $neutral-400;
+        }
+
+        .hero_btn {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            font-size: 1.6rem;
+            cursor: pointer;
+            margin-top: 2rem;
+            border: 1px solid $neutral-500;
+            width: max-content;
+            padding: .5rem 4rem;
+            border-radius: 2rem;
+
+            img {
+                width: 1.8rem;
+            }
+        }
+    }
+
+    .hero_background {
+        z-index: 0;
+        border: 1px solid red;
+
+        /* animation variables */
+        $animation-duration: 7s;
+        $animation-delay: 1s;
+
+        .img1,
+        .img2,
+        .img3 {
+            position: absolute;
+
+            .img_container {
+                position: relative;
+                height: 100%;
+                width: 100%;
+
+                img {
+                    transform: rotate(5deg);
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    z-index: 1;
+
+                    animation: tilt-img calc($animation-duration) reverse infinite;
+
+                    @keyframes tilt-img {
+
+                        0%,
+                        100% {
+                            transform: rotate(5deg);
+                        }
+
+                        50% {
+                            transform: rotate(2deg);
+                        }
+                    }
+                }
+
+                &::after {
+
+                    content: '';
+                    position: absolute;
+                    transform: rotate(15deg);
+                    min-width: 100%;
+                    min-height: 100%;
+                    top: 0;
+                    left: 0;
+                    background: #FFC5C5;
+                    z-index: -1;
+                    animation: tilt calc($animation-duration) reverse infinite;
+
+                    @keyframes tilt {
+
+                        0%,
+                        100% {
+                            transform: rotate(15deg);
+                        }
+
+                        50% {
+                            transform: rotate(17deg);
+                        }
+                    }
+                }
+            }
+        }
+
+        .img1 {
+            top: 50%;
+            left: 55%;
+            height: 75%;
+            transform: translate(-50%, calc(-50% + 2rem));
+            animation: animate1 $animation-duration forwards infinite;
+            animation-delay: $animation-delay;
+
+            @keyframes animate1 {
+
+                0%,
+                100% {
+                    top: 50%;
+                    left: 55%;
+                    height: 75%;
+                    transform: translate(-50%, calc(-50% + 2rem));
+                }
+
+                10%,
+                70% {
+                    top: 60%;
+                    left: -10%;
+                    height: 30%;
+                    transform: translate(-100%, calc(-50% + 2rem)) rotate(-40deg);
+                }
+
+            }
+        }
+
+        .img2 {
+            bottom: 0;
+            right: 5%;
+            height: 34%;
+            transform: translate(-50%, -50%);
+
+            .img_container {
+                &::after {
+                    background: $neutral-500;
+                }
+            }
+
+            animation: animate2 $animation-duration forwards infinite;
+            animation-delay: $animation-delay;
+
+            @keyframes animate2 {
+
+                0%,
+                100% {
+                    bottom: 0;
+                    right: 5%;
+                    height: 34%;
+                    transform: translate(-50%, -50%);
+                }
+
+                10%,
+                70% {
+                    bottom: 50%;
+                    right: 50%;
+                    height: 75%;
+                    transform: translate(calc(50% + 2rem), calc(50% + 2rem)) rotate(0deg);
+                }
+
+            }
+        }
+
+        .img3 {
+            bottom: 0;
+            right: -20%;
+            height: 34%;
+            transform: translate(-50%, -50%);
+
+            .img_container {
+                &::after {
+                    background: rgb(141, 180, 185);
+                }
+            }
+
+            animation: animate3 $animation-duration forwards infinite;
+            animation-delay: $animation-delay;
+
+            @keyframes animate3 {
+
+                0%,
+                100% {
+                    bottom: 0;
+                    right: -20%;
+                    height: 34%;
+                    transform: translate(-50%, -50%);
+                }
+
+                10%,
+                70% {
+                    bottom: 0;
+                    right: 5%;
+                    height: 34%;
+                    transform: translate(-50%, -50%);
+                }
+
+            }
+        }
+    }
+}

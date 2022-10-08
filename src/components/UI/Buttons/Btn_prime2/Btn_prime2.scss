@@ -1,0 +1,37 @@
+@import '/public/assets/css/variables';
+
+.Btn_prime2 {
+    position: relative;
+    color: inherit;
+    cursor: pointer;
+    padding: .5rem 1.5rem;
+    transition: .3s all;
+
+    svg {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        transform: rotate(-10deg);
+    }
+
+    rect {
+        stroke-width: 2;
+        stroke-dasharray: 15, 310;
+        stroke-dashoffset: 48;
+    }
+
+    &:hover {
+        font-weight: 500;
+
+        rect {
+            fill: none;
+            stroke: $neutral-500;
+            stroke-width: 1;
+            stroke-dasharray: 422, 0;
+            border-radius: 2rem;
+            transition: all 1s ease;
+        }
+    }
+}

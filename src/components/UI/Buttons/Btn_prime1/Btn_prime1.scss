@@ -1,0 +1,78 @@
+@import '/public/assets/css/variables';
+
+.Btn_prime1 {
+    position: relative;
+    color: inherit;
+    cursor: pointer;
+    padding: .6rem 1.5rem;
+
+    svg {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        transform: rotate(-10deg);
+        transition: all .3s ease .35s;
+        z-index: -1;
+    }
+
+    rect {
+        fill: none;
+        stroke: $neutral-500;
+        stroke-width: 1;
+        stroke-dasharray: 422, 0;
+        border-radius: 2rem;
+    }
+
+    span {
+        z-index: 1;
+    }
+
+    &:hover {
+        color: inherit;
+        animation: color-change .3s ease forwards;
+        animation-delay: .7s;
+
+        @keyframes color-change {
+            0% {
+                color: inherit;
+            }
+
+            100% {
+                color: $neutral-000;
+            }
+        }
+
+        rect {
+            stroke-width: 2;
+            stroke-dasharray: 15, 310;
+            stroke-dashoffset: 48;
+            fill: $neutral-500;
+            color: $neutral-000;
+            animation: animate 1s linear forwards;
+
+            @keyframes animate {
+                0% {
+                    fill: none;
+                    stroke: $neutral-500;
+                    stroke-width: 1;
+                    stroke-dasharray: 422, 0;
+                }
+
+                80% {
+                    fill: transparent;
+                    stroke: $neutral-500;
+                    stroke-width: 2;
+                    stroke-dasharray: 15, 310;
+                    stroke-dashoffset: 48;
+
+                }
+
+                100% {
+                    fill: $neutral-500;
+                }
+            }
+        }
+    }
+}

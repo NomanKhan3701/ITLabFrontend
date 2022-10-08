@@ -1,3 +1,15 @@
+ /* primary color */
+ $primary-orange: orange;
+
+ /* tint */
+ $tint-orange: #fcf4ef;
+
+ /* neutral */
+ $neutral-000: #FFFFFF;
+ $neutral-400: #867873;
+ $neutral-500: #5f5450;
+ $neutral-600: #343333;
+
  /* break points */
  $break-point-desktop: 1400px;
  $break-point-desktop-sm: 1200px;
@@ -30,8 +42,8 @@
  $d-logo: 0.5s;
 
  /* height */
- $nav-height: 70px;
- $nav-height-sm: 60px;
+ $navbar-height: 70px;
+ $navbar-height-sm: 60px;
 
  /* padding */
  $pd-container: 60px;

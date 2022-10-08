@@ -5,8 +5,23 @@ a {
     color: unset;
 }
 
-img {
-    background: var(--txt-100);
+@-webkit-keyframes autofill {
+
+    0%,
+    100% {
+        color: #666;
+        background: transparent;
+    }
+}
+
+input {
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+        transition: background-color 5000s ease-in-out 0s;
+    }
 }
 
 .ptr {
@@ -42,9 +57,52 @@ img {
     }
 }
 
+.padding_top_nav {
+    padding-top: $navbar-height;
+
+    @media screen and (max-width: $break-point-tab) {
+        padding-top: $navbar-height-sm;
+    }
+}
+
 .sticky-top {
     position: -webkit-sticky;
     position: sticky;
     top: 2rem;
     transition: .2s all ease;
+}
+
+.btn_prime1 {
+    position: relative;
+    width: max-content;
+    cursor: pointer;
+    padding: .5rem 1.5rem;
+    transition: .2s all ease;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 40px/24px;
+        transform: rotate(-15deg);
+        border: 1px solid red;
+    }
+
+    &:hover {
+        background: var(--bg-100);
+        color: var(--txt-100);
+        border: 1px solid var(--bg-100);
+    }
+}
+
+.btn_secondary1 {
+
+    &:hover {
+        background: var(--bg-100);
+        color: var(--txt-100);
+        border: 1px solid var(--bg-100);
+    }
 }
