@@ -4,7 +4,8 @@
     position: relative;
     display: flex;
     height: 100vh;
-    min-height: max-content;
+    padding-top: $navbar-height;
+    min-height: 55rem;
     background: $tint-orange;
     align-items: center;
     overflow: hidden;

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './HeroSection.scss'
 
 const HeroSection = () => {
@@ -13,7 +14,7 @@ const HeroSection = () => {
           Art is something we do, a verb. Art is an expression of our thoughts, emotions, intuitions, and desires, but it is even more personal than that: it’s about sharing
         </div>
         <div className="hero_btn">
-          <text>Explore the world</text>
+          <Link to='/explore'><p>Explore the world</p></Link>
           <img src="/public/assets/images/exploreWorld.svg" alt="" />
         </div>
       </div>

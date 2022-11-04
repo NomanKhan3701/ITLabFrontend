@@ -3,7 +3,6 @@
 .Login {
     background: $tint-orange;
     height: 100vh;
-    font-family: 'Marko One', serif;
     display: flex;
 
     $margin-top: 8rem;
@@ -15,6 +14,7 @@
         h1 {
             font-size: 2.4rem;
             margin-bottom: .5rem;
+            font-family: 'Marko One', serif;
         }
 
         .sub_util {
