@@ -4,12 +4,25 @@ import Home from "./pages/Home/Home"
 import Login from "./pages/Login/Login"
 import Signup from "./pages/Signup/Signup"
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { ToastContainer } from "react-toastify";
 import Explore from "./pages/Explore/Explore"
 import Posts from "./pages/Posts/Posts"
+import { useCallback, useEffect } from "react"
+import * as actions from "./store/actions/index";
 
 function App() {
+  const dispatch = useDispatch();
+
+  const onTryAutoSignup = useCallback(
+    () => dispatch(actions.authCheckState()),
+    [dispatch]
+  );
+
+  useEffect(() => {
+    onTryAutoSignup();
+  }, [onTryAutoSignup]);
 
   return (
     <div className="App">

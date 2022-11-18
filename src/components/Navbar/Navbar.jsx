@@ -3,8 +3,18 @@ import { Link } from 'react-router-dom'
 import Btn_prime1 from '../UI/Buttons/Btn_prime1/Btn_prime1'
 import Btn_prime2 from '../UI/Buttons/Btn_prime2/Btn_prime2'
 import './Navbar.scss'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
 const Navbar = () => {
+  const JWT = useSelector((state) => state.auth.token ? state.auth.token : null);
+  const userInfo = useSelector((state) => state.auth.user ? state.auth.user : null);
+
+  useEffect(() => {
+    console.log(userInfo, JWT);
+  }, [JWT, userInfo])
+
+
   return (
     <div className='Navbar container'>
       <Link to='/'>
