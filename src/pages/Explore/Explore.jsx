@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import arrowDownOutline from '/public/assets/images/arrowDownOutline.svg'
 import AuthorCard from '../../components/UI/Cards/AuthorCard/AuthorCard';
-import { BsCaretDown } from 'react-icons/bs'
 import { AiFillCloseCircle } from 'react-icons/ai';
 import Book from '../../components/Book/Book';
 import './Explore.scss';
@@ -81,7 +80,7 @@ const Explore = () => {
 					authors.map((author, index) => {
 						return (
 							// <div onClick={() => setShowBook(true)}>
-							<AuthorCard author={author} key={index} onClick={() => setShowBook(true)}/>
+							<AuthorCard author={author} key={index} onClick={() => setShowBook(true)} />
 							// </div>
 						)
 					})

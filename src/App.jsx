@@ -11,7 +11,8 @@ import Explore from "./pages/Explore/Explore"
 import Posts from "./pages/Posts/Posts"
 import { useCallback, useEffect } from "react"
 import * as actions from "./store/actions/index";
-import Profile from "./pages/Profile/Profile"
+import Profile from "./pages/Profile/Profile";
+import ShayariPopup from "./components/Modals/ShayariPopup/ShayariPopup"
 
 function App() {
   const dispatch = useDispatch();

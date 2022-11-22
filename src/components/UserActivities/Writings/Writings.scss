@@ -1,0 +1,139 @@
+@import '/public/assets/css/variables';
+
+.Writings {
+
+    .writing_popup {
+        position: fixed;
+        overflow: auto;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none;
+
+        &.active {
+            display: grid;
+            place-items: center;
+        }
+
+        .close {
+            position: fixed;
+            top: 1.5rem;
+            right: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            color: white;
+            font-size: 1.6rem;
+            text-decoration: underline;
+
+            svg {
+                font-size: 2rem;
+                color: white;
+            }
+
+        }
+
+        .popup_wrapper {
+            width: 60rem;
+            height: auto;
+            margin-top: 4rem;
+            background: #f2f0ee;
+            border-radius: $br-0;
+            padding: 3rem;
+            box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+
+            .label {
+                font-size: 1.8rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                color: gray;
+            }
+
+            textarea {
+                width: 100%;
+                height: 20rem;
+                border: none;
+                border-radius: $br-0;
+                padding: 1rem;
+                font-size: 1.4rem;
+                font-family: 'Poppins';
+                resize: none;
+                outline: none;
+                margin-bottom: 2rem;
+
+                &:focus {
+                    box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.1);
+                }
+            }
+
+            input {
+                width: 100%;
+                height: 4rem;
+                border: none;
+                border-radius: $br-0;
+                padding: 1rem;
+                font-size: 1.4rem;
+                font-family: 'Poppins';
+                outline: none;
+
+                &:focus {
+                    box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.1);
+                }
+            }
+
+            .btn_wrapper {
+                text-align: center;
+                width: 15rem;
+                margin-top: 3rem;
+                background: #207257;
+                color: $neutral-000;
+                padding: .6rem 1rem;
+                border-radius: .6rem;
+                cursor: pointer;
+                font-size: 1.4rem;
+                display: flex;
+                align-items: center;
+                gap: .7rem;
+                justify-content: center;
+                font-weight: 500;
+
+                .plus {
+                    font-size: 1.9rem;
+                }
+            }
+        }
+    }
+
+    .add_shayary_btn {
+        display: flex;
+        gap: .5rem;
+        font-size: 1.5rem;
+        align-items: center;
+        width: max-content;
+        font-weight: 600;
+        color: rgb(78, 140, 255);
+        cursor: pointer;
+        padding: 0 .6rem;
+
+        .plus {
+            font-size: 1.9rem;
+            font-weight: 600;
+        }
+    }
+
+
+    .writings {
+        max-width: 100%;
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(27rem, 1fr));
+        gap: 3rem;
+        margin-bottom: 8rem;
+        place-items: center;
+        overflow-x: hidden;
+    }
+}

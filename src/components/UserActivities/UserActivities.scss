@@ -61,16 +61,7 @@
             }
         }
 
-        .writings {
-            max-width: 100%;
-            margin-top: 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(27rem, 1fr));
-            gap: 3rem;
-            margin-bottom: 8rem;
-            place-items: center;
-            overflow-x: hidden;
-        }
+      
 
         .liked {
             max-width: 100%;

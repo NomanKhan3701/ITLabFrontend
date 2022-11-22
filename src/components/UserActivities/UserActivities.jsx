@@ -5,6 +5,7 @@ import ShayariCard from '../UI/Cards/ShayariCard/ShayariCard';
 import ArchiveFill from '/public/assets/images/ArchiveFill.svg'
 import './UserActivities.scss'
 import ProfileWritingCard from '../UI/Cards/ProfileWritingsCard/ProfileWritingCard';
+import Writings from './Writings/Writings';
 
 const NoInfo = () => {
 	return (
@@ -30,6 +31,7 @@ const UserActivities = () => {
 
 	return (
 		<div className='User_activities'>
+			<ShayariPopup />
 			<div className="secondary_tab">
 				{links.map((link, index) => {
 					return (
@@ -46,24 +48,18 @@ const UserActivities = () => {
 				})}
 			</div>
 			<div className='user_activity'>
-				{tabType === 'liked' ? <div className="liked">
-					{/* <NoInfo /> */}
-					<ShayariCard />
-					<ShayariCard />
-					<ShayariCard />
-					<ShayariCard />
-					<ShayariCard />
-					<ShayariCard />
-				</div> :
-					<div className="writings">
+				{tabType === 'liked' ?
+					<div className="liked">
 						{/* <NoInfo /> */}
-						<ProfileWritingCard />
-						<ProfileWritingCard />
-						<ProfileWritingCard />
-						<ProfileWritingCard />
-						<ProfileWritingCard />
-						<ProfileWritingCard />
-					</div>}
+						<ShayariCard />
+						<ShayariCard />
+						<ShayariCard />
+						<ShayariCard />
+						<ShayariCard />
+						<ShayariCard />
+					</div>
+					: <Writings />
+				}
 			</div>
 		</div >
 	)

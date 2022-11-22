@@ -4,14 +4,28 @@ import Btn_prime1 from '../UI/Buttons/Btn_prime1/Btn_prime1'
 import Btn_prime2 from '../UI/Buttons/Btn_prime2/Btn_prime2'
 import './Navbar.scss'
 import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 const Navbar = () => {
   const JWT = useSelector((state) => state.auth.token ? state.auth.token : null);
   const userInfo = useSelector((state) => state.auth.user ? state.auth.user : null);
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleNavScroll);
+    return () => window.removeEventListener('scroll', handleNavScroll);
+  }, [])
+
+  const handleNavScroll = () => {
+    if (window.scrollY > 20 && navRef.current) {
+      navRef.current.classList.add('scrolled');
+    } else if (navRef.current) {
+      navRef.current.classList.remove('scrolled');
+    }
+  }
 
   return (
-    <div className='Navbar container'>
+    <div className='Navbar container' ref={navRef}>
       <Link to='/'>
         <div className="logo">
           <img src='/public/assets/images/writeFeather.svg' alt="" />

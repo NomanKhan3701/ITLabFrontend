@@ -5,9 +5,9 @@ import { BiCommentDetail } from 'react-icons/bi';
 import LimitChar from '../../LimitChar/LimitChar';
 
 
-const ShayariCard = () => {
+const ShayariCard = ({ onClick }) => {
 	return (
-		<div className='Shayari_card'>
+		<div className='Shayari_card' onClick={onClick}>
 			<div className="profile">
 				<div className="img">
 					<img src="/assets/images/p1.jpg" alt="" />
@@ -25,9 +25,9 @@ const ShayariCard = () => {
 				<div className="icon_wrapper">
 					<BiCommentDetail />
 				</div>
-				<div className="icon_wrapper">
+				{/* <div className="icon_wrapper">
 					<BsBookmarkPlus />
-				</div>
+				</div> */}
 			</div>
 		</div>
 	)

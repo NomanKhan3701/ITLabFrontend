@@ -1,0 +1,191 @@
+@import '/public/assets/css/variables';
+
+.Shayari_popup {
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+
+    &.active {
+        display: grid;
+        place-items: center;
+    }
+
+    .close {
+        position: fixed;
+        top: 1.5rem;
+        right: 2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        color: white;
+        font-size: 1.6rem;
+        text-decoration: underline;
+
+        svg {
+            font-size: 2rem;
+            color: white;
+        }
+
+    }
+
+    .popup_wrapper {
+        width: 100rem;
+        height: auto;
+        margin-top: 4rem;
+        background: #f2f0ee;
+        border-radius: .8rem;
+        overflow: hidden;
+        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+        display: flex;
+        max-height: calc(100vh - 12rem);
+
+        .main_content {
+            width: 45%;
+            font-size: 1.4rem;
+            font-weight: 500;
+            padding: 2rem;
+            background: $neutral-000;
+            min-height: 100%;
+            overflow-y: auto;
+
+            .shayari_wrapper {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 1.5rem;
+                width: 100%;
+                min-height: 100%;
+
+                .name {
+                    margin-left: auto;
+                    font-size: 1.4rem;
+                    font-weight: 600;
+                    color: gray;
+                    font-family: 'Marko One', serif;
+                    margin-right: 1rem;
+                    width: max-content;
+                }
+
+                .shayari {
+                    font-size: 1.8rem;
+                    font-weight: 500;
+                    line-height: 2.5rem;
+                }
+            }
+
+
+            &::-webkit-scrollbar {
+                height: 5px;
+                width: 7px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: rgb(206, 206, 206);
+                border-radius: 50px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: transparent;
+                border-radius: 50px;
+            }
+
+
+
+        }
+
+        .comments_container {
+            width: 60%;
+            background: #EEEEEE;
+            padding: 2rem;
+            max-height: 100%;
+
+            .add_comment {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+
+
+                input {
+                    background: $neutral-000;
+                    outline: none;
+                    border: none;
+                    padding: .8rem 1rem;
+                    border-radius: .6rem;
+                    width: 100%;
+                    font-size: 1.4rem;
+
+                    &:focus {
+                        box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.1);
+                    }
+                }
+
+                .comment {
+                    font-size: 1.4rem;
+                    font-weight: 500;
+                    text-decoration: underline;
+                    cursor: pointer;
+                    margin-left: .2rem;
+                    color: rgb(70, 129, 201);
+                }
+            }
+
+            .comments {
+                display: flex;
+                flex-direction: column;
+                margin-top: 2rem;
+                overflow-y: auto;
+                height: calc(100% - 7rem);
+                padding-right: 1rem;
+
+                &::-webkit-scrollbar {
+                    height: 5px;
+                    width: 7px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: rgb(206, 206, 206);
+                    border-radius: 50px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: transparent;
+                    border-radius: 50px;
+                }
+
+
+
+                .comment {
+                    display: flex;
+                    gap: 1.5rem;
+                    font-size: 1.4rem;
+                    font-weight: 500;
+                    color: rgb(85, 85, 85);
+                    border-bottom: 1px solid rgb(210, 210, 210);
+                    padding: 1rem 0;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+
+                    img {
+                        width: 3.5rem;
+                        height: 3.5rem;
+                        border-radius: 50%;
+                    }
+                }
+            }
+
+        }
+
+
+    }
+}
