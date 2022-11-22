@@ -4,6 +4,7 @@ import './Signup.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import * as actions from '../../store/actions/index';
 
 const SERVER_URL = import.meta.env.VITE_API_URL;
 
@@ -11,21 +12,16 @@ const Signup = () => {
 	const dispatch = useDispatch();
 	const [signupData, setSignupData] = useState({
 		email: "",
-		username: "",
+		userName: "",
 		password: "",
 	});
 
 	const Signup = async () => {
-		try {
-			const res = await axios.post(`${SERVER_URL}/user/signup`, {
-				email: signupData.email,
-				password: signupData.password,
-				username: signupData.username,
-			});
-			console.log(res.data);
-		} catch (e) {
-			toast.error(e.response.data.message);
-		}
+		dispatch(actions.signup({
+			email: signupData.email,
+			password: signupData.password,
+			userName: signupData.userName,
+		}));
 	}
 
 	const signupInputHandler = (event) => {
@@ -35,14 +31,14 @@ const Signup = () => {
 		});
 	}
 
-
 	return (
 		<div className='Signup container padding_top_nav'>
-
+			{/* 
 			<div className="signup_image">
 				<img src="/public/assets/images/signup.svg" alt="" />
-			</div>
+			</div> */}
 			<div className="signup_container">
+				{/* <div className="stamp"></div> */}
 				<h1>Welcome back to Artex</h1>
 				<div className="sub_util">
 					Already have an account? <Link to='/login'><span>Login</span></Link>
@@ -54,7 +50,7 @@ const Signup = () => {
 					</div>
 					<div className="input_container">
 						<label htmlFor="email">Username</label>
-						<input type="text" name='username' onChange={signupInputHandler} value={signupData.username} />
+						<input type="text" name='userName' onChange={signupInputHandler} value={signupData.username} />
 					</div>
 					<div className="input_container">
 						<label htmlFor="password">Password</label>

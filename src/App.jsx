@@ -11,6 +11,7 @@ import Explore from "./pages/Explore/Explore"
 import Posts from "./pages/Posts/Posts"
 import { useCallback, useEffect } from "react"
 import * as actions from "./store/actions/index";
+import Profile from "./pages/Profile/Profile"
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/posts" element={<Posts />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="*" element={<div>404</div>} />
       </Routes>
       {/* <Footer /> */}
     </div>

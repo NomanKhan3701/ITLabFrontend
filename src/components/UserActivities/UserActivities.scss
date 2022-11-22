@@ -1,0 +1,86 @@
+@import '/public/assets/css/variables';
+
+.User_activities {
+    padding: 2rem;
+    width: 100%;
+    height: 100%;
+    min-height: max-content;
+
+    .secondary_tab {
+        display: flex;
+        gap: 1rem;
+        font-size: 1.4rem;
+        font-weight: 500;
+        margin-bottom: 3rem;
+
+        .tab_item {
+            padding: .6rem 2rem;
+            cursor: pointer;
+            text-transform: capitalize;
+
+            &.active {
+                background: rgb(36, 127, 97);
+                border-radius: 1rem 2rem;
+                color: $neutral-000;
+            }
+        }
+    }
+
+    .user_activity {
+        .no_info {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: $neutral-400;
+            padding: 4rem 0;
+            padding-bottom: 7rem;
+
+            @media screen and (max-width: $break-point-tab) {
+                position: absolute;
+            }
+
+            .bin_wrapper {
+                margin-bottom: 3rem;
+                border-radius: 50%;
+                display: grid;
+                place-items: center;
+                width: 16rem;
+                height: 16rem;
+                background: $neutral-200;
+            }
+
+            .bold_txt {
+                font-weight: 600;
+                font-size: 1.6rem;
+                margin-bottom: .8rem;
+            }
+        }
+
+        .writings {
+            max-width: 100%;
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(27rem, 1fr));
+            gap: 3rem;
+            margin-bottom: 8rem;
+            place-items: center;
+            overflow-x: hidden;
+        }
+
+        .liked {
+            max-width: 100%;
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(27rem, 1fr));
+            gap: 3rem;
+            margin-bottom: 8rem;
+            place-items: center;
+            overflow-x: hidden;
+        }
+    }
+}

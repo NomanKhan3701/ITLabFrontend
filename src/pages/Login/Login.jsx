@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import * as actions from '../../store/actions/index';
 import './Login.scss'
-
-
 
 const Login = () => {
 	const loginProgress = useSelector((state) => state.auth.loginInProgress);
@@ -14,7 +14,10 @@ const Login = () => {
 	});
 
 	const Login = () => {
-		
+		dispatch(actions.login({
+			email: loginData.email,
+			password: loginData.password,
+		}));
 	}
 
 	const loginInputHandler = (event) => {
@@ -45,9 +48,9 @@ const Login = () => {
 				<div className="login_btn" onClick={Login}>Login</div>
 			</div>
 
-			<div className="login_image">
+			{/* <div className="login_image">
 				<img src="/public/assets/images/loginImage.svg" alt="" />
-			</div>
+			</div> */}
 		</div>
 	)
 }

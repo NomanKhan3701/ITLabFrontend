@@ -2,13 +2,27 @@
 
 .Signup {
     background: $tint-orange;
-    height: 100vh;
     display: flex;
+    justify-content: center;
     $margin-top: 7rem;
+
 
     .signup_container {
         margin-top: $margin-top;
-        padding-right: 8rem;
+        background: rgb(253, 253, 253);
+        padding: 4rem;
+        border-radius: 1rem;
+        position: relative;
+        box-shadow: 0 0 1rem rgba(0, 0, 0, .05);
+
+        .stamp {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 7rem;
+            height: 7rem;
+            background: $tint-orange;
+        }
 
         h1 {
             font-size: 2.4rem;
@@ -78,17 +92,17 @@
         }
     }
 
-    .signup_image {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        margin-top: $margin-top;
+    // .signup_image {
+    //     display: flex;
+    //     width: 100%;
+    //     justify-content: center;
+    //     margin-top: $margin-top;
 
-        img {
-            width: 50rem;
-            height: 40rem;
-        }
-    }
+    //     img {
+    //         width: 50rem;
+    //         height: 40rem;
+    //     }
+    // }
 
 
 }

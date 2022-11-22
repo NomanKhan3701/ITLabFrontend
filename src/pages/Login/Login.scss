@@ -2,14 +2,17 @@
 
 .Login {
     background: $tint-orange;
-    height: 100vh;
     display: flex;
-
+    justify-content: center;
     $margin-top: 8rem;
 
     .login_container {
         margin-top: $margin-top;
-        padding-left: 5rem;
+        background: rgb(253, 253, 253);
+        padding: 4rem;
+        border-radius: 1rem;
+        position: relative;
+        box-shadow: 0 0 1rem rgba(0, 0, 0, .05);
 
         h1 {
             font-size: 2.4rem;
@@ -66,17 +69,17 @@
         }
     }
 
-    .login_image {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        margin-top: $margin-top;
+    // .login_image {
+    //     display: flex;
+    //     width: 100%;
+    //     justify-content: center;
+    //     margin-top: $margin-top;
 
-        img {
-            width: 50rem;
-            height: 40rem;
-        }
-    }
+    //     img {
+    //         width: 50rem;
+    //         height: 40rem;
+    //     }
+    // }
 
 
 }

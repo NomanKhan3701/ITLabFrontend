@@ -17,6 +17,7 @@ const authLogout = (state, action) => {
 
 const authUserVerfiedOrNot = (state, action) => updateObject(state, {
 	user: action.user,
+	token: action.token,
 	loginInProgress: false,
 })
 
@@ -24,7 +25,7 @@ const authReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.AUTH_START:
 			return authStart(state, action)
-		case actionTypes.AUTH_VERIFIED_AND_REGISTERED:
+		case actionTypes.AUTH_SUCCESS:
 			return authUserVerfiedOrNot(state, action)
 		case actionTypes.AUTH_LOGOUT:
 			return authLogout(state, action)
