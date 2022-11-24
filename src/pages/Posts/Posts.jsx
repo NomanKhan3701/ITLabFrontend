@@ -45,7 +45,7 @@ const Posts = () => {
 	const getShayaries = async () => {
 		try {
 			setLoading(true);
-			const res = await axios.get(`${SERVER_URL}/post/Posts`, null, {
+			const res = await axios.get(`${SERVER_URL}/post/Posts`, {
 				headers: {
 					'Content-Type': 'application/json',
 					'Authorization': `Bearer ${token}`
@@ -62,8 +62,8 @@ const Posts = () => {
 			});
 			setShayaries(shayaries);
 			setLoading(false);
-		} catch (e) {
-			console.log(e);
+		} catch (error) {
+			console.log(error);
 		}
 	}
 
