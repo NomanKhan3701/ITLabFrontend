@@ -58,26 +58,30 @@ const Writings = () => {
 	const addShayari = async () => {
 		try {
 			if (user) {
-				const tags = newShayari.tags.split('#').filter((tag) => tag !== '')
-				const config = {
-					headers: {
-						'Content-Type': 'application/json',
-						'Authorization': `Bearer ${token}`,
-					},
+				if (newShayari.shayari.length > 0 && newShayari.tags.length > 0) {
+					const tags = newShayari.tags.split('#').filter((tag) => tag !== '')
+					const config = {
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': `Bearer ${token}`,
+						},
+					}
+					const res = await axios.post(`${SERVER_URL}/post`,
+						{
+							content: newShayari.shayari,
+							description: 'desc',
+							tags: tags,
+						}, config);
+					console.log(res.data);
+					setPopupActive(false);
+					setNewShayari({
+						shayari: '',
+						tags: '',
+					});
+					getShayaries();
+				} else {
+					toast.warn('Please fill all fields');
 				}
-				const res = await axios.post(`${SERVER_URL}/post`,
-					{
-						content: newShayari.shayari,
-						description: 'desc',
-						tags: tags,
-					}, config);
-				console.log(res.data);
-				setPopupActive(false);
-				setNewShayari({
-					shayari: '',
-					tags: '',
-				});
-				getShayaries();
 			}
 		} catch (e) {
 			console.log(e);

@@ -22,10 +22,13 @@ const Posts = () => {
 
 	useEffect(() => {
 		document.addEventListener("mousedown", clickOutsideRef);
+		return () => document.removeEventListener("mousedown", clickOutsideRef);
+	}, [token])
+
+	useEffect(() => {
 		if (token) {
 			getShayaries();
 		}
-		return () => document.removeEventListener("mousedown", clickOutsideRef);
 	}, [token])
 
 	const clickOutsideRef = (e) => {
@@ -42,7 +45,7 @@ const Posts = () => {
 	const getShayaries = async () => {
 		try {
 			setLoading(true);
-			const res = await axios.get(`${SERVER_URL}/post/Posts`, {
+			const res = await axios.get(`${SERVER_URL}/post/Posts`, null, {
 				headers: {
 					'Content-Type': 'application/json',
 					'Authorization': `Bearer ${token}`

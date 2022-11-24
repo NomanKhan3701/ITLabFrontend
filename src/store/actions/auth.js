@@ -75,7 +75,7 @@ export const login = ({ email, password }) => {
 	};
 };
 
-export const signup = ({ email, password, userName }) => {
+export const signup = ({ email, password, userName, image }) => {
 	return (dispatch) => {
 		dispatch(authStart());
 		try {
@@ -83,6 +83,7 @@ export const signup = ({ email, password, userName }) => {
 				email: email,
 				password: password,
 				userName: userName,
+				image: image,
 			}).then((res) => {
 				if (res.status >= 400) {
 					toast.error(res.data.message);
