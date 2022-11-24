@@ -6,6 +6,7 @@ import ArchiveFill from '/public/assets/images/ArchiveFill.svg'
 import './UserActivities.scss'
 import ProfileWritingCard from '../UI/Cards/ProfileWritingsCard/ProfileWritingCard';
 import Writings from './Writings/Writings';
+import ShayariPopup from '../Modals/ShayariPopup/ShayariPopup';
 
 const NoInfo = () => {
 	return (

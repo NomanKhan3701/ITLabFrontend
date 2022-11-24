@@ -17,11 +17,9 @@
         place-items: center;
 
         .upload-img {
-            border-radius: 50%;
-            height: 10rem;
+            height: 11rem;
             width: 10rem;
             cursor: pointer;
-            overflow: hidden;
             position: relative;
 
             img {
@@ -29,8 +27,8 @@
                 top: 0;
                 left: 0;
                 width: 10rem;
-                height: 10rem;
-                border-radius: 50%;
+                height: 11rem;
+                border-radius: .6rem;
                 object-fit: cover;
                 z-index: 0;
                 border: 3px solid rgb(230, 225, 225);
@@ -53,8 +51,7 @@
     }
 
     .img_wrapper {
-        border-radius: 50%;
-        height: 10rem;
+        height: 11rem;
         width: 10rem;
         position: relative;
 
@@ -63,8 +60,8 @@
             top: 0;
             left: 0;
             width: 10rem;
-            height: 10rem;
-            border-radius: 50%;
+            height: 11rem;
+            border-radius: .6rem;
             object-fit: cover;
             z-index: 0;
             border: 3px solid rgb(226, 145, 145);

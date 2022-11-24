@@ -3,26 +3,56 @@ import './ShayariCard.scss';
 import { BsSuitHeartFill, BsSuitHeart, BsBookmarkPlus } from "react-icons/bs";
 import { BiCommentDetail } from 'react-icons/bi';
 import LimitChar from '../../LimitChar/LimitChar';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
+const SERVER_URL = import.meta.env.VITE_API_URL;
+const ShayariCard = ({ onClick, shayari, setShayaries }) => {
+	const token = useSelector((state) => state.auth.token);
+	const likeShayari = async () => {
+		try {
+			const res = await axios.patch(`${SERVER_URL}/post/like/${shayari.postId}`, null,
+				{
+					headers: {
+						Authorization: `Bearer ${token}`
+					}
+				});
+			setShayaries((shayaries) => {
+				const index = shayaries.findIndex((Shayari) => Shayari.postId === shayari.postId);
+				shayaries[index].Likes = res.data.Likes;
+				if (shayaries[index].isLiked) {
+					shayaries[index].isLiked = false;
+				} else {
+					shayaries[index].isLiked = true;
+				}
+				return [...shayaries];
+			})
+		} catch (e) {
+			console.log(e);
+		}
+	}
 
-const ShayariCard = ({ onClick }) => {
 	return (
-		<div className='Shayari_card' onClick={onClick}>
-			<div className="profile">
-				<div className="img">
-					<img src="/assets/images/p1.jpg" alt="" />
+		<div className='Shayari_card' >
+			<div onClick={onClick}>
+				<div className="profile">
+					<div className="img">
+						<img src={shayari.createdBy.img ? shayari.createdBy.img : "/assets/images/p1.jpg"} alt="" />
+					</div>
+					<div className="name">{shayari.createdBy.userName}</div>
 				</div>
-				<div className="name">Noman_37</div>
+				<div className="shayari">
+					<LimitChar word={shayari && shayari?.content} limit={200} fitContent={true} hover={false} />
+				</div>
 			</div>
-			<div className="shayari">
-				<LimitChar word={'Tis hard to say, if greater want of skill Appear in writing or in judging ill Tis hard to say, if greater want of skill Appear in writing or in judging ill Tis hard to say, if greater want of skill Appear in writing or in judging ill Tis hard to say, if greater want of skill Appear in writing or in judging ill Tis hard to say, if greater want of skill Appear in writing or in judging ill Tis hard to say, if greater want of skill Appear in writing or in judging ill'} limit={200} fitContent={true} hover={false} />
 
-			</div>
 			<div className="utils">
-				<div className="icon_wrapper">
-					<BsSuitHeart />
+				<div className={`icon_wrapper ${shayari.isLiked ? 'active' : ''}`} onClick={likeShayari}>
+					<BsSuitHeartFill />
+					<div>{shayari?.Likes?.length}</div>
 				</div>
-				<div className="icon_wrapper">
+
+				<div className="icon_wrapper" onClick={onClick}>
 					<BiCommentDetail />
 				</div>
 				{/* <div className="icon_wrapper">

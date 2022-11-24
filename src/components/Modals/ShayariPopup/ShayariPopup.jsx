@@ -4,7 +4,7 @@ import * as actions from "../../../store/actions/index";
 import { AiFillCloseCircle } from 'react-icons/ai'
 import './ShayariPopup.scss';
 
-const ShayariPopup = () => {
+const ShayariPopup = ({ shayari }) => {
 	const dispatch = useDispatch();
 	const shayariPopupOpen = useSelector((state) => state.popup.shayariPopupOpen);
 	const popup_ref = useRef(null);
@@ -27,9 +27,7 @@ const ShayariPopup = () => {
 				<div className="main_content">
 					<div className="shayari_wrapper">
 						<div className="shayari">
-					
-							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia delectus at aperiam, fugit ullam ad quam veritatis neque tenetur culpa animi ex error laudantium. Amet repellat veniam facilis sapiente autem.
-							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia delectus at aperiam, fugit ullam ad quam veritatis neque tenetur culpa animi ex error laudantium. Amet repellat veniam facilis sapiente autem.
+							{shayari && shayari.content}
 						</div>
 						<div className="name">
 							~ Noman

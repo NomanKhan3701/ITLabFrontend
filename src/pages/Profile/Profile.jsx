@@ -5,7 +5,6 @@ import UserActivities from '../../components/UserActivities/UserActivities';
 import ProfileViewAndEdit from '../../components/ProfileViewAndEdit/ProfileViewAndEdit';
 
 const Profile = () => {
-	
 
 	return (
 		<div className='Profile container padding_top_nav'>

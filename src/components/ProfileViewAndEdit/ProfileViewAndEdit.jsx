@@ -4,13 +4,16 @@ import defaultImage from '/public/assets/images/defaultImage.png';
 import { BsFillFilePostFill, BsPencil, BsTrash } from 'react-icons/bs';
 import { BiDonateHeart } from 'react-icons/bi';
 import { useState, useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const ProfileViewAndEdit = () => {
 	const [isEditing, setIsEditing] = useState(false);
+	const user = useSelector((state) => state.auth.user);
 	const [profile, setProfile] = useState({
-		username: "John Doe",
-		email: "noman.khan3701@gmail.com",
-		img: "/public/assets/images/p3.jpg",
+		userName: user?.userName,
+		email: user?.email,
+		img: user?.img,
+		// img: "/public/assets/images/p3.jpg",
 	});
 	const fileRef = useRef();
 	const dragRef = useRef(null);
@@ -22,10 +25,17 @@ const ProfileViewAndEdit = () => {
 	};
 
 	useEffect(() => {
-		if (prevImg) {
-			setProfile({ ...profile, img: prevImg });
+		if (user) {
+			setProfile({
+				userName: user?.userName,
+				email: user?.email,
+				img: user?.img,
+			})
 		}
-	}, [prevImg]);
+	}, [user]);
+
+	useEffect(() => {
+	}, [profile]);
 
 	const process = (file) => {
 		if (!file) return;
@@ -134,8 +144,8 @@ const ProfileViewAndEdit = () => {
 			<div className="profile_details">
 				{
 					isEditing ?
-						(<input type="text" name='username' onChange={handleProfileEdit} value={profile.username} />) :
-						(<div className="username">{profile.username}</div>)
+						(<input type="text" name='userName' onChange={handleProfileEdit} value={profile.userName} />) :
+						(<div className="username">{profile.userName}</div>)
 				}
 				<div className="email">{profile.email}</div>
 				<div className="achivements">
