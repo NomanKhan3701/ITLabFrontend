@@ -63,8 +63,8 @@ const Posts = () => {
 			});
 			setShayaries(shayaries);
 			setLoading(false);
-		} catch (e) {
-			console.log(e);
+		} catch (error) {
+			console.log(error);
 		}
 	}
 
