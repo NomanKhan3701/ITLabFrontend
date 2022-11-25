@@ -37,12 +37,12 @@ const ShayariCard = ({ onClick, shayari, setShayaries }) => {
 			<div onClick={onClick}>
 				<div className="profile">
 					<div className="img">
-						<img src={shayari.createdBy.img ? shayari.createdBy.img : "/assets/images/p1.jpg"} alt="" />
+						<img src={shayari.createdBy && shayari.createdBy.image ? shayari.createdBy.image : "/assets/images/p1.jpg"} alt="" />
 					</div>
-					<div className="name">{shayari.createdBy.userName}</div>
+					<div className="name">{shayari.createdBy && shayari.createdBy.userName}</div>
 				</div>
 				<div className="shayari">
-					<LimitChar word={shayari && shayari?.content} limit={200} fitContent={true} hover={false} />
+					<LimitChar word={shayari && shayari?.content} limit={180} fitContent={true} hover={false} />
 				</div>
 			</div>
 

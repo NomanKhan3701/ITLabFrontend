@@ -67,7 +67,8 @@
 
                 &.front_1,
                 &.front_2,
-                &.back_1 {
+                &.back_1,
+                &.back_second {
                     // min-height: calc(100% + 2rem);
                     // width: calc(100% + 1rem);
                     // transform: translateX(1rem);
@@ -113,6 +114,24 @@
                                 width: 100%;
                                 height: 100%;
                                 background: linear-gradient(to left, rgba(255, 255, 255, 0.5) 5px, rgba(255, 255, 255, 0.25) 7px, rgba(255, 255, 255, 0.25) 10px, transparent 12px, transparent 16px, rgba(255, 255, 255, 0.25) 17px, transparent 22px);
+                                z-index: 1;
+                            }
+                        }
+                    }
+
+                    &.back_second {
+                        .cover_img {
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                background: none;
+                                background-image: linear-gradient(to right,
+                                        rgba(0, 0, 0, 0.12) 0%,
+                                        rgba(0, 0, 0, 0) 10%);
                                 z-index: 1;
                             }
                         }

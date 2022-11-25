@@ -13,6 +13,7 @@ const Posts = () => {
 	const [dropdownShow, setDropdownShow] = useState(false);
 	const [dropdownValue, setDropdownValue] = useState('popular');
 	const [currShayari, setCurrShayari] = useState(null);
+	const [searchQuery, setSearchQuery] = useState('');
 	const [loading, setLoading] = useState(true);
 	const [shayaries, setShayaries] = useState([]);
 	const dropdown_toggle_el = useRef(null);
@@ -23,7 +24,7 @@ const Posts = () => {
 	useEffect(() => {
 		document.addEventListener("mousedown", clickOutsideRef);
 		return () => document.removeEventListener("mousedown", clickOutsideRef);
-	}, [token])
+	}, [])
 
 	useEffect(() => {
 		if (token) {
@@ -45,7 +46,7 @@ const Posts = () => {
 	const getShayaries = async () => {
 		try {
 			setLoading(true);
-			const res = await axios.get(`${SERVER_URL}/post/Posts`, null, {
+			const res = await axios.get(`${SERVER_URL}/post/Posts`, {
 				headers: {
 					'Content-Type': 'application/json',
 					'Authorization': `Bearer ${token}`
@@ -71,7 +72,7 @@ const Posts = () => {
 		<div className='Posts container padding_top_nav'>
 			<ShayariPopup shayari={currShayari} />
 			<div className="filter_container">
-				<input type="text" name="" id="" placeholder='Search by authors' />
+				<input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder='Search by authors' />
 				<div className="filter_dropdown" ref={dropdown_toggle_el} onClick={() => setDropdownShow(active => !active)}>
 					<div className="value">{dropdownValue}</div>
 					<img src={arrowDownOutline} alt="" />
@@ -85,16 +86,18 @@ const Posts = () => {
 			</div>
 			<div className="shayari_container">
 				{
-					shayaries.map((shayari, index) => {
-						return (
-							<ShayariCard
-								key={index}
-								shayari={shayari}
-								onClick={() => openShayariPopup(index)}
-								setShayaries={setShayaries}
-							/>
-						)
-					})
+					loading ? <div className="loading">Loading...</div> :
+						shayaries.map((shayari, index) => {
+							if (!shayari.createdBy.userName.toLowerCase().includes(searchQuery.toLowerCase())) return;
+							return (
+								<ShayariCard
+									key={index}
+									shayari={shayari}
+									onClick={() => openShayariPopup(index)}
+									setShayaries={setShayaries}
+								/>
+							)
+						})
 				}
 			</div>
 

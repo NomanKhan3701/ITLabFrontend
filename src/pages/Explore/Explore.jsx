@@ -12,17 +12,13 @@ const SERVER_URL = import.meta.env.VITE_API_URL;
 
 const Explore = () => {
 	const [showBook, setShowBook] = useState(false);
-	const [dropdownShow, setDropdownShow] = useState(false);
-	const [dropdownValue, setDropdownValue] = useState('popular');
-	const dropdown_toggle_el = useRef(null);
+	const [loading, setLoading] = useState(true);
+	const [reRender, setReRender] = useState(false);
+	const [currAuthor, setCurrAuthor] = useState();
 	const [authors, setAuthors] = useState([]);
+	const [searchQuery, setSearchQuery] = useState('');
 	const token = useSelector((state) => state.auth.token);
 	const user = useSelector((state) => state.auth.user);
-
-	useEffect(() => {
-		document.addEventListener("mousedown", clickOutsideRef);
-		return () => document.removeEventListener("mousedown", clickOutsideRef);
-	}, [])
 
 	useEffect(() => {
 		if (token) {
@@ -30,21 +26,17 @@ const Explore = () => {
 		}
 	}, [token])
 
-	const clickOutsideRef = (e) => {
-		if (dropdown_toggle_el.current && !dropdown_toggle_el.current.contains(e.target)) {
-			setDropdownShow(false);
-		}
-	};
-
 	const getAuthors = async () => {
 		try {
-			const res = await axios.get(`${SERVER_URL}/user/userlist`, null, {
+			setLoading(true);
+			const res = await axios.get(`${SERVER_URL}/user/userlist`, {
 				headers: {
 					'Content-Type': 'application/json',
 					'Authorization': `Bearer ${token}`
 				}
 			});
-			setAuthors(res.data.users)
+			setAuthors(res.data.users);
+			setLoading(false);
 		} catch (e) {
 			toast.error('Something went wrong');
 			console.log(e);
@@ -53,39 +45,34 @@ const Explore = () => {
 
 	const showAuthorBook = (index) => {
 		setShowBook(true)
-
+		setCurrAuthor(authors[index]);
 	}
 
 	return (
 		<div className='Explore container padding_top_nav'>
 			<div className={'book_popup ' + `${showBook ? "active" : ""}`}>
-				<div className="close" onClick={() => setShowBook(false)}><AiFillCloseCircle />Close</div>
+				<div className="close" onClick={() => {
+					setShowBook(false)
+					setReRender(true)
+				}}><AiFillCloseCircle />Close</div>
 				<div className="book_wrapper">
-					<Book />
+					<Book currAuthor={currAuthor} setCurrAuthor={setCurrAuthor} reRender={reRender} setReRender={setReRender} />
 				</div>
 			</div>
 			<div className="filter_container">
-				<input type="text" name="" id="" placeholder='Search by authors' />
-				<div className="filter_dropdown" ref={dropdown_toggle_el} onClick={() => setDropdownShow(active => !active)}>
-					<div className="value">{dropdownValue}</div>
-					<img src={arrowDownOutline} alt="" />
-
-					<div className={"dropdown_list " + `${dropdownShow ? "active" : ""}`}>
-						<div className="dropdown_item" onClick={() => setDropdownValue("popular")}>Popular</div>
-						<div className="dropdown_item" onClick={() => setDropdownValue("newest")}>Newest</div>
-						<div className="dropdown_item" onClick={() => setDropdownValue("oldest")}>Oldest</div>
-					</div>
-				</div>
+				<input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} type="text" name="" id="" placeholder='Search by authors' />
 			</div>
 			<div className="authors_container">
 				{
-					authors.map((author, index) => {
-						return (
-							// <div onClick={() => setShowBook(true)}>
-							<AuthorCard author={author} key={index} onClick={() => showAuthorBook(index)} />
-							// </div>
-						)
-					})
+					loading ? <div className="loading">Loading...</div> :
+						authors.map((author, index) => {
+							if (!author.userName.toLowerCase().includes(searchQuery.toLowerCase())) return;
+							return (
+								// <div onClick={() => setShowBook(true)}>
+								<AuthorCard author={author} key={index} onClick={() => showAuthorBook(index)} />
+								// </div>
+							)
+						})
 				}
 			</div>
 		</div>

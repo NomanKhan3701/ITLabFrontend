@@ -9,23 +9,21 @@ import { toast } from 'react-toastify';
 
 const SERVER_URL = import.meta.env.VITE_API_URL;
 
-const Writings = () => {
+const Writings = ({ shayaris, getShayaries, isWritingloading }) => {
 	const [popupActive, setPopupActive] = useState(false);
 	const [newShayari, setNewShayari] = useState({
 		shayari: '',
 		tags: ''
 	});
-	const [loading, setLoading] = useState(true);
-	const [shayaris, setShayaris] = useState([]);
+
 	const user = useSelector((state) => state.auth.user);
 	const token = useSelector((state) => state.auth.token);
 	const popup_ref = useRef(null);
 
 	useEffect(() => {
 		document.addEventListener("mousedown", clickOutsideRef);
-		getShayaries();
 		return () => document.removeEventListener("mousedown", clickOutsideRef);
-	}, [user])
+	}, [])
 
 	const clickOutsideRef = (e) => {
 		if (popup_ref.current && !popup_ref.current.contains(e.target)) {
@@ -40,20 +38,7 @@ const Writings = () => {
 		});
 	};
 
-	const getShayaries = async () => {
-		try {
 
-			if (user) {
-				const res = await axios.get(`${SERVER_URL}/user?id=${user.userId}`);
-				console.log(res.data);
-				setLoading(false);
-				setShayaris(res.data.Post);
-			}
-		} catch (e) {
-			console.log(e);
-			toast.error('Something went wrong');
-		}
-	}
 
 	const addShayari = async () => {
 		try {
@@ -72,7 +57,6 @@ const Writings = () => {
 							description: 'desc',
 							tags: tags,
 						}, config);
-					console.log(res.data);
 					setPopupActive(false);
 					setNewShayari({
 						shayari: '',
@@ -112,10 +96,10 @@ const Writings = () => {
 			</div>
 			<div className="writings">
 				{
-					loading ? <div className="loading">Loading...</div> :
+					isWritingloading ? <div className="loading">Loading...</div> :
 						(
-							shayaris.length === 0 ? <div className="no_shayari">No Shayari</div> :
-								shayaris.map((shayari) => (
+							shayaris.Post.length === 0 ? <div className="loading">No data, Upload Shayaries to view</div> :
+								shayaris.Post.map((shayari) => (
 									<ProfileWritingCard key={shayari._id} shayari={shayari} />
 								))
 						)

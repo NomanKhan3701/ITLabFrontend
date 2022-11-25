@@ -11,6 +11,12 @@
         margin-bottom: 8rem;
         place-items: center;
         overflow-x: hidden;
+
+        .loading {
+            width: 100%;
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
     }
 
     .filter_container {

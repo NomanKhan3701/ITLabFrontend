@@ -7,6 +7,14 @@ import './UserActivities.scss'
 import ProfileWritingCard from '../UI/Cards/ProfileWritingsCard/ProfileWritingCard';
 import Writings from './Writings/Writings';
 import ShayariPopup from '../Modals/ShayariPopup/ShayariPopup';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import axios from 'axios';
+import Liked from './Liked/Liked';
+import { useEffect } from 'react';
+
+
+const SERVER_URL = import.meta.env.VITE_API_URL;
 
 const NoInfo = () => {
 	return (
@@ -20,15 +28,38 @@ const NoInfo = () => {
 	)
 }
 
-
 const UserActivities = () => {
 	const navigate = useNavigate();
 	const [searchParams, setSearchParams] = useSearchParams();
+	const [shayaris, setShayaris] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const user = useSelector((state) => state.auth.user);
+	const token = useSelector((state) => state.auth.token);
 	const [links, setLinks] = useState([
 		'writings',
 		'liked'
 	])
 	const tabType = searchParams.get('tab');
+
+	useEffect(() => {
+		if (user) {
+			getShayaries();
+		}
+	}, [user])
+
+	const getShayaries = async () => {
+		try {
+			if (user) {
+				setLoading(true);
+				const res = await axios.get(`${SERVER_URL}/user?id=${user.userId}`);
+				setLoading(false);
+				setShayaris(res.data);
+			}
+		} catch (e) {
+			console.log(e);
+			toast.error('Something went wrong');
+		}
+	}
 
 	return (
 		<div className='User_activities'>
@@ -50,16 +81,8 @@ const UserActivities = () => {
 			</div>
 			<div className='user_activity'>
 				{tabType === 'liked' ?
-					<div className="liked">
-						{/* <NoInfo /> */}
-						<ShayariCard />
-						<ShayariCard />
-						<ShayariCard />
-						<ShayariCard />
-						<ShayariCard />
-						<ShayariCard />
-					</div>
-					: <Writings />
+					<Liked isWritingloading={loading} shayaris={shayaris} getShayaries={getShayaries} setShayaries={setShayaris} />
+					: <Writings isWritingloading={loading} shayaris={shayaris} getShayaries={getShayaries} />
 				}
 			</div>
 		</div >
