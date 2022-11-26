@@ -4,15 +4,23 @@ import defaultImage from '/public/assets/images/defaultImage.png';
 import { BsFillFilePostFill, BsPencil, BsTrash } from 'react-icons/bs';
 import { BiDonateHeart } from 'react-icons/bi';
 import { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import axios from 'axios';
+import * as actions from '../../store/actions/index.js';
+
+const SERVER_URL = import.meta.env.VITE_API_URL;
 
 const ProfileViewAndEdit = () => {
 	const [isEditing, setIsEditing] = useState(false);
+	const dispatch = useDispatch();
 	const user = useSelector((state) => state.auth.user);
+	const token = useSelector((state) => state.auth.token);
 	const [profile, setProfile] = useState({
+		userId: user?.userId,
 		userName: user?.userName,
 		email: user?.email,
-		img: user?.img,
+		img: user?.image?.url,
 		// img: "/public/assets/images/p3.jpg",
 	});
 	const fileRef = useRef();
@@ -27,9 +35,10 @@ const ProfileViewAndEdit = () => {
 	useEffect(() => {
 		if (user) {
 			setProfile({
+				userId: user?.userId,
 				userName: user?.userName,
 				email: user?.email,
-				img: user?.img,
+				img: user?.image?.url,
 			})
 		}
 	}, [user]);
@@ -100,8 +109,26 @@ const ProfileViewAndEdit = () => {
 		setProfile({ ...profile, [e.target.name]: e.target.value });
 	}
 
-	const saveProfile = () => {
-		setIsEditing(false);
+	const saveProfile = async () => {
+		try {
+			const res = await axios.patch(`${SERVER_URL}/user/image/${user.userId}`, {
+				updatedImg: prevImg
+			});
+			const editedUser = {
+				userId: user.userId,
+				userName: user.userName,
+				email: user.email,
+				image: res.data.image
+			}
+			dispatch(actions.authSuccess(
+				token, editedUser
+			));
+			setIsEditing(false);
+		} catch (e) {
+			console.log(e);
+			toast.error("Something went wrong");
+		}
+
 	};
 
 	return (
@@ -142,11 +169,7 @@ const ProfileViewAndEdit = () => {
 			}
 
 			<div className="profile_details">
-				{
-					isEditing ?
-						(<input type="text" name='userName' onChange={handleProfileEdit} value={profile.userName} />) :
-						(<div className="username">{profile.userName}</div>)
-				}
+				<div className="username">{profile.userName}</div>
 				<div className="email">{profile.email}</div>
 				<div className="achivements">
 					<div className="total_posts">

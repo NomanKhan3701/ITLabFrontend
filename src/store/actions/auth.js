@@ -13,6 +13,9 @@ export const authStart = () => {
 };
 
 export const authSuccess = (token, user) => {
+	localStorage.setItem("token", token);
+	// localStorage.setItem("expiresIn", expiresIn);
+	localStorage.setItem("user", JSON.stringify(user));
 	return {
 		type: actionTypes.AUTH_SUCCESS,
 		token: token,
@@ -59,9 +62,7 @@ export const login = ({ email, password }) => {
 				// };
 				const user = res.data.user;
 				// const expiresIn = new Date(decoded.exp * 1000);
-				localStorage.setItem("token", token);
-				// localStorage.setItem("expiresIn", expiresIn);
-				localStorage.setItem("user", JSON.stringify(user));
+
 				dispatch(authSuccess(token, user));
 				window.location = '/'
 

@@ -70,7 +70,7 @@ const Posts = () => {
 
 	return (
 		<div className='Posts container padding_top_nav'>
-			<ShayariPopup shayari={currShayari} />
+			<ShayariPopup shayari={currShayari} setShayaries={setShayaries} />
 			<div className="filter_container">
 				<input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder='Search by authors' />
 				<div className="filter_dropdown" ref={dropdown_toggle_el} onClick={() => setDropdownShow(active => !active)}>

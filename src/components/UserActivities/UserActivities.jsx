@@ -42,7 +42,7 @@ const UserActivities = () => {
 	const tabType = searchParams.get('tab');
 
 	useEffect(() => {
-		if (user) {
+		if (user && shayaris.length === 0) {
 			getShayaries();
 		}
 	}, [user])

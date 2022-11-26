@@ -161,10 +161,16 @@
                     border-radius: 50px;
                 }
 
-
+                .no_comments {
+                    font-size: 1.6rem;
+                    font-weight: 600;
+                    margin-top: 2rem;
+                    margin-bottom: 4rem;
+                }
 
                 .comment {
                     display: flex;
+                    align-items: center;
                     gap: 1.5rem;
                     font-size: 1.4rem;
                     font-weight: 500;
