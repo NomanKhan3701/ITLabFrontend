@@ -16,18 +16,6 @@ import { useEffect } from 'react';
 
 const SERVER_URL = import.meta.env.VITE_API_URL;
 
-const NoInfo = () => {
-	return (
-		<div className="no_info">
-			<div className="bin_wrapper">
-				<img src={ArchiveFill} alt="" />
-			</div>
-			<div className="bold_txt">Looks Empty!</div>
-			<div>Add your syllabus with chapters & Topics</div>
-		</div>
-	)
-}
-
 const UserActivities = () => {
 	const navigate = useNavigate();
 	const [searchParams, setSearchParams] = useSearchParams();

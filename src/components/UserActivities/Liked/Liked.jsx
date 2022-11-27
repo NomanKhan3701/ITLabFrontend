@@ -12,12 +12,24 @@ import * as actions from '../../../store/actions/index';
 
 const SERVER_URL = import.meta.env.VITE_API_URL;
 
+const NoInfo = () => {
+	return (
+		<div className="no_info">
+			<div className="bin_wrapper">
+				<img src={ArchiveFill} alt="" />
+			</div>
+			<div className="bold_txt">Looks Empty!</div>
+			<div>Add your syllabus with chapters & Topics</div>
+		</div>
+	)
+}
+
 const Liked = ({ shayaris, getShayaries, setShayaries, isWritingloading }) => {
 	const [popupActive, setPopupActive] = useState(false);
 	const [currShayari, setCurrShayari] = useState(null);
+	const [reRender, setReRender] = useState(false);
 	const user = useSelector((state) => state.auth.user);
 	const dispatch = useDispatch();
-
 	const openShayariPopup = (shayari) => {
 		setCurrShayari(shayari);
 		dispatch(actions.setShayariPopupOpen(true));
@@ -25,7 +37,7 @@ const Liked = ({ shayaris, getShayaries, setShayaries, isWritingloading }) => {
 
 	return (
 		<div className='Liked'>
-			<ShayariPopup shayari={currShayari} setShayaries={setShayaries} />
+			<ShayariPopup shayari={currShayari} setShayaries={setShayaries} isLikedPage={true} />
 			<div className="writings">
 				{
 					isWritingloading ? <div className="loading">Loading...</div> :
@@ -37,6 +49,8 @@ const Liked = ({ shayaris, getShayaries, setShayaries, isWritingloading }) => {
 										shayari={shayari.postId}
 										onClick={() => openShayariPopup(shayari.postId)}
 										setShayaries={setShayaries}
+										isLikedPage={true}
+										setReRender={setReRender}
 									/>
 								))
 						)

@@ -7,14 +7,14 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const SERVER_URL = import.meta.env.VITE_API_URL;
-const ShayariPopup = ({ shayari, setShayaries }) => {
+const ShayariPopup = ({ shayari, setShayaries, isLikedPage }) => {
 	const dispatch = useDispatch();
 	const shayariPopupOpen = useSelector((state) => state.popup.shayariPopupOpen);
 	const popup_ref = useRef(null);
 	const user = useSelector((state) => state.auth.user);
 	const token = useSelector((state) => state.auth.token);
 	const [newComment, setNewComment] = useState('');
-	console.log(shayari);
+	// console.log(shayari);
 
 	useEffect(() => {
 		document.addEventListener("mousedown", clickOutsideRef);
@@ -46,14 +46,22 @@ const ShayariPopup = ({ shayari, setShayaries }) => {
 						Authorization: `Bearer ${token}`
 					}
 				});
-				console.log(res.data);
-				setShayaries((prev) => {
-					const newShayaries = [...prev];
-					const index = newShayaries.findIndex((shayarie) => shayarie.postId === shayari.postId);
-					console.log(index);
-					newShayaries[index].comments = res.data;
-					return newShayaries;
-				});
+				if (isLikedPage) {
+					setShayaries((prev) => {
+						const newShayaries = prev;
+						const index = newShayaries.Likes.findIndex((shayarie) => shayarie.postId.postId === shayari.postId);
+						newShayaries.Likes[index].postId.comments = res.data;
+						return newShayaries;
+					});
+				} else {
+					setShayaries((prev) => {
+						const newShayaries = [...prev];
+						const index = newShayaries.findIndex((shayarie) => shayarie.postId === shayari.postId);
+						newShayaries[index].comments = res.data;
+						return newShayaries;
+					});
+				}
+
 				setNewComment('');
 
 			} else {

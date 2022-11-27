@@ -7,8 +7,9 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 const SERVER_URL = import.meta.env.VITE_API_URL;
-const ShayariCard = ({ onClick, shayari, setShayaries }) => {
+const ShayariCard = ({ onClick, shayari, setShayaries, isLikedPage, setReRender }) => {
 	const token = useSelector((state) => state.auth.token);
+
 	const likeShayari = async () => {
 		try {
 			const res = await axios.patch(`${SERVER_URL}/post/like/${shayari.postId}`, null,
@@ -17,16 +18,28 @@ const ShayariCard = ({ onClick, shayari, setShayaries }) => {
 						Authorization: `Bearer ${token}`
 					}
 				});
-			setShayaries((shayaries) => {
-				const index = shayaries.findIndex((Shayari) => Shayari.postId === shayari.postId);
-				shayaries[index].Likes = res.data.Likes;
-				if (shayaries[index].isLiked) {
-					shayaries[index].isLiked = false;
-				} else {
-					shayaries[index].isLiked = true;
-				}
-				return [...shayaries];
-			})
+			if (isLikedPage) {
+				setShayaries((prev) => {
+					console.log("inside", prev);
+					const newShayaries = prev;
+					const index = newShayaries.Likes.findIndex((shayarie) => shayarie.postId.postId === shayari.postId);
+					newShayaries.Likes.splice(index, 1);
+					return newShayaries;
+				});
+				setReRender((prev) => !prev);
+			} else {
+				setShayaries((shayaries) => {
+					const index = shayaries.findIndex((Shayari) => Shayari.postId === shayari.postId);
+					shayaries[index].Likes = res.data.Likes;
+					if (shayaries[index].isLiked) {
+						shayaries[index].isLiked = false;
+					} else {
+						shayaries[index].isLiked = true;
+					}
+					return [...shayaries];
+				})
+			}
+
 		} catch (e) {
 			console.log(e);
 		}
@@ -47,7 +60,7 @@ const ShayariCard = ({ onClick, shayari, setShayaries }) => {
 			</div>
 
 			<div className="utils">
-				<div className={`icon_wrapper ${shayari.isLiked ? 'active' : ''}`} onClick={likeShayari}>
+				<div className={`icon_wrapper ${shayari.isLiked || isLikedPage ? 'active' : ''}`} onClick={likeShayari}>
 					<BsSuitHeartFill />
 					<div>{shayari?.Likes?.length}</div>
 				</div>
