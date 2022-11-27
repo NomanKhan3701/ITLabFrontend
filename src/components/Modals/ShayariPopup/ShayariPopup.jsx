@@ -61,7 +61,6 @@ const ShayariPopup = ({ shayari, setShayaries, isLikedPage }) => {
 						return newShayaries;
 					});
 				}
-
 				setNewComment('');
 
 			} else {

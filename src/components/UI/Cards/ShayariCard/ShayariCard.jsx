@@ -20,7 +20,6 @@ const ShayariCard = ({ onClick, shayari, setShayaries, isLikedPage, setReRender 
 				});
 			if (isLikedPage) {
 				setShayaries((prev) => {
-					console.log("inside", prev);
 					const newShayaries = prev;
 					const index = newShayaries.Likes.findIndex((shayarie) => shayarie.postId.postId === shayari.postId);
 					newShayaries.Likes.splice(index, 1);
