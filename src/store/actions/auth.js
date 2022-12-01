@@ -64,7 +64,6 @@ export const login = ({ email, password }) => {
 				// const expiresIn = new Date(decoded.exp * 1000);
 
 				dispatch(authSuccess(token, user));
-				window.location = '/'
 
 			}).catch((err) => {
 				toast.error(err.response.data.message);
@@ -103,7 +102,6 @@ export const signup = ({ email, password, userName, image }) => {
 				// localStorage.setItem("expiresIn", expiresIn);
 				localStorage.setItem("user", JSON.stringify(user));
 				dispatch(authSuccess(token, user));
-				window.location = '/'
 
 			}).catch((err) => {
 				toast.error(err.response.data.message);

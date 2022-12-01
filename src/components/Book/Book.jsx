@@ -5,6 +5,7 @@ import './Book.scss'
 const Book = ({ currAuthor, setCurrAuthor, reRender, setReRender }) => {
   const pagesRef = React.useRef(null);
   const [pages, setPages] = React.useState([]);
+  console.log(currAuthor);
 
   useEffect(() => {
     if (pages) {
@@ -75,7 +76,7 @@ const Book = ({ currAuthor, setCurrAuthor, reRender, setReRender }) => {
 
             if (index === 0) {
               return (
-                <div className="page" onClick={flipPage} key={index} style={{ zIndex: `${index % 2 === 0 ? pages.length - index : 0}` }}>
+                <div className="page" onClick={flipPage} key={index} style={{ zIndex: `${index % 2 === 0 ? pages.length - index : 0}` }} name="book_page">
                   <div className='cover_wrapper front_1'>
                     <div className='cover_img'>
                       <img src='/public/assets/images/bookCoverBg.jpg' alt="" />
@@ -86,7 +87,7 @@ const Book = ({ currAuthor, setCurrAuthor, reRender, setReRender }) => {
               )
             } else if (pages.length % 2 === 0 && index === pages.length - 3) {
               return (
-                <div className="page" key={index} onClick={flipPage} style={{ zIndex: `${index % 2 === 0 ? pages.length - index : 0}` }}>
+                <div className="page" key={index} onClick={flipPage} style={{ zIndex: `${index % 2 === 0 ? pages.length - index : 0}` }} name="book_page">
                   <div className='cover_wrapper back_2'>
 
                   </div>
@@ -94,7 +95,7 @@ const Book = ({ currAuthor, setCurrAuthor, reRender, setReRender }) => {
               )
             } else if (index === pages.length - 2) {
               return (
-                <div className="page" key={index} onClick={flipPage} style={{ zIndex: `${index % 2 === 0 ? pages.length - index : 0}` }}>
+                <div className="page" key={index} onClick={flipPage} style={{ zIndex: `${index % 2 === 0 ? pages.length - index : 0}` }} name="book_page">
                   <div className='cover_wrapper back_second'>
                     <div className='cover_img'>
                       <img src='/public/assets/images/bookCoverBg.jpg' alt="" />
@@ -105,7 +106,7 @@ const Book = ({ currAuthor, setCurrAuthor, reRender, setReRender }) => {
             }
             else if (index === pages.length - 2 || index === pages.length - 1) {
               return (
-                <div className="page" key={index} onClick={flipPage} style={{ zIndex: `${index % 2 === 0 ? pages.length - index : 0}` }}>
+                <div className="page" key={index} onClick={flipPage} style={{ zIndex: `${index % 2 === 0 ? pages.length - index : 0}` }} name="book_page">
                   <div className='cover_wrapper back_1'>
                     <div className='cover_img'>
                       <img src='/public/assets/images/bookCoverBg.jpg' alt="" />
@@ -115,7 +116,7 @@ const Book = ({ currAuthor, setCurrAuthor, reRender, setReRender }) => {
               )
             } else if (page.id === -1) {
               return (
-                <div className="page " onClick={flipPage} key={index} style={{ zIndex: `${index % 2 === 0 ? pages.length - index : 0}` }}>
+                <div className="page " onClick={flipPage} key={index} style={{ zIndex: `${index % 2 === 0 ? pages.length - index : 0}` }} name="book_page">
                   <div className='cover_wrapper front_2'>
                     <div className='cover_img'>
                       <img src='/public/assets/images/bookCoverBg.jpg' alt="" />
@@ -125,7 +126,7 @@ const Book = ({ currAuthor, setCurrAuthor, reRender, setReRender }) => {
               )
             } else {
               return (
-                <div className="page" onClick={flipPage} key={index} style={{ zIndex: `${index % 2 === 0 ? pages.length - index : 0}` }}>
+                <div className="page" onClick={flipPage} key={index} style={{ zIndex: `${index % 2 === 0 ? pages.length - index : 0}` }} name="book_page">
                   <div className='page_content'>
                     {page.shayari}
                     <div className="page_count">{index - 1}</div>

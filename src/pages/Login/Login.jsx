@@ -45,7 +45,7 @@ const Login = () => {
 					</div>
 				</div>
 
-				<div className="login_btn" onClick={Login}>Login</div>
+				<div className="login_btn" name="login_submit" onClick={Login}>Login</div>
 			</div>
 
 			{/* <div className="login_image">

@@ -54,7 +54,7 @@ const ShayariCard = ({ onClick, shayari, setShayaries, isLikedPage, setReRender 
 					<div className="name">{shayari.createdBy && shayari.createdBy.userName}</div>
 				</div>
 				<div className="shayari">
-					<LimitChar word={shayari && shayari?.content} limit={180} fitContent={true} hover={false} />
+					<LimitChar word={shayari && shayari?.content} limit={120} fitContent={true} hover={false} />
 				</div>
 			</div>
 

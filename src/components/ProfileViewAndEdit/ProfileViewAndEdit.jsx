@@ -13,6 +13,7 @@ const SERVER_URL = import.meta.env.VITE_API_URL;
 
 const ProfileViewAndEdit = () => {
 	const [isEditing, setIsEditing] = useState(false);
+	const [saving, setSaving] = useState(false);
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.auth.user);
 	const token = useSelector((state) => state.auth.token);
@@ -110,20 +111,29 @@ const ProfileViewAndEdit = () => {
 	}
 
 	const saveProfile = async () => {
+
 		try {
-			const res = await axios.patch(`${SERVER_URL}/user/image/${user.userId}`, {
+			setSaving(true);
+			toast.promise(axios.patch(`${SERVER_URL}/user/image/${user.userId}`, {
 				updatedImg: prevImg
+			}).then((res) => {
+				const editedUser = {
+					userId: user.userId,
+					userName: user.userName,
+					email: user.email,
+					image: res.data.image
+				}
+				dispatch(actions.authSuccess(
+					token, editedUser
+				));
+				setIsEditing(false);
+				setSaving(false);
+			}), {
+				pending: 'Saving Profile...',
+				success: 'Profile updated successfully',
+				error: 'Error'
 			});
-			const editedUser = {
-				userId: user.userId,
-				userName: user.userName,
-				email: user.email,
-				image: res.data.image
-			}
-			dispatch(actions.authSuccess(
-				token, editedUser
-			));
-			setIsEditing(false);
+
 		} catch (e) {
 			console.log(e);
 			toast.error("Something went wrong");
@@ -182,6 +192,7 @@ const ProfileViewAndEdit = () => {
 						<span className="label">Total Likes: </span>
 						<span className="value">10</span>
 					</div>
+					{!saving && <div name="saved_status_check"></div>}
 				</div>
 				{
 					isEditing ? (<div className='btn_save' onClick={() => saveProfile()}>Save Changes</div>) :

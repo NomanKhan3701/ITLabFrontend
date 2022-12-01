@@ -54,7 +54,7 @@ const Explore = () => {
 				<div className="close" onClick={() => {
 					setShowBook(false)
 					setReRender(true)
-				}}><AiFillCloseCircle />Close</div>
+				}} name="close_book"><AiFillCloseCircle />Close</div>
 				<div className="book_wrapper">
 					<Book currAuthor={currAuthor} setCurrAuthor={setCurrAuthor} reRender={reRender} setReRender={setReRender} />
 				</div>
@@ -68,9 +68,7 @@ const Explore = () => {
 						authors.map((author, index) => {
 							if (!author.userName.toLowerCase().includes(searchQuery.toLowerCase())) return;
 							return (
-								// <div onClick={() => setShowBook(true)}>
-								<AuthorCard author={author} key={index} onClick={() => showAuthorBook(index)} />
-								// </div>
+								<AuthorCard name={index === 0 ? "author_card" : null} author={author} key={index} onClick={() => showAuthorBook(index)} />
 							)
 						})
 				}
