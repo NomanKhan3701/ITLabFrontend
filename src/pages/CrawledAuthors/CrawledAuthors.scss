@@ -1,0 +1,81 @@
+@import '/public/assets/css/variables';
+
+.Crawled_authors {
+
+    .loading {
+        width: 100%;
+        font-size: 1.8rem;
+        font-weight: 500;
+        margin-top: 2rem;
+
+        span {
+            color: rgb(161, 161, 161);
+        }
+    }
+
+    .authors_container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+        grid-column-gap: 9rem;
+        grid-row-gap: 5rem;
+        margin-bottom: 8rem;
+        place-items: center;
+        margin-top: 3rem;
+    }
+
+    .Author_card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+        max-width: 30rem;
+        height: 32rem;
+        cursor: pointer;
+
+        &::after {
+            content: '';
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: #FFC5C5;
+            z-index: -1;
+            transform: rotate(3deg);
+            transform-origin: bottom;
+            transition: .3s all ease;
+        }
+
+        &:hover {
+            &::after {
+                transform: rotate(6deg);
+            }
+        }
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            box-shadow: $box-shadow-light;
+            background: $neutral-000;
+        }
+
+        .card_name {
+            position: absolute;
+            width: 100%;
+            height: 4rem;
+            display: grid;
+            place-items: center;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.41);
+            backdrop-filter: blur(5px);
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
+    }
+}

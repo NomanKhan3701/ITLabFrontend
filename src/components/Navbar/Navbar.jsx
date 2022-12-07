@@ -53,15 +53,20 @@ const Navbar = () => {
                   <span name="author_nav_link">Authors</span>
                 </Btn_prime2>
               </Link>
+              <Link to='/crawler_authors'>
+                <Btn_prime2>
+                  <span name="author_nav_link">Crawled authors</span>
+                </Btn_prime2>
+              </Link>
               <Link to='/posts'>
                 <Btn_prime2>
                   Posts
                 </Btn_prime2>
               </Link>
-              <div onClick={() => {
+              {/* <div onClick={() => {
                 dispatch(actions.logout)
                 window.location.reload();
-              }}>Logout</div>
+              }}>Logout</div> */}
               <Link to='/profile'>
                 <Btn_prime1>
                   Profile

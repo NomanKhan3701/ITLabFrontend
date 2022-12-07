@@ -13,6 +13,7 @@ import { useCallback, useEffect } from "react"
 import * as actions from "./store/actions/index";
 import Profile from "./pages/Profile/Profile";
 import ShayariPopup from "./components/Modals/ShayariPopup/ShayariPopup"
+import CrawledAuthors from "./pages/CrawledAuthors/CrawledAuthors"
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/explore" element={<Explore />} />
+        <Route path="/crawler_authors" element={<CrawledAuthors />} />
         <Route path="/posts" element={<Posts />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<div>404</div>} />
